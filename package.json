@@ -1,5 +1,5 @@
 {
-  "name": "redis-resource-lock",
+  "name": "redis-optimistic-lock",
   "version": "0.0.0",
   "description": "",
   "license": "",
