@@ -2,47 +2,14 @@
 /// <reference path='../typings/jasmine/jasmine.d.ts' />
 'use strict';
 
-var Greeter = require('../src/greeter');
 var RedisTest = require('../src/redis');
 var util = require('util');
-
-describe('ts - test', function () {
-    it('ts - test2', function () {
-        var greeter = new Greeter('TSfriend');
-        expect(greeter.greet()).toBe('Bonjour, TSfriend!');
-    });
-
-});
 
 describe('redis', function () {
     let myuuid: string = 'test1';
     let redisVarName = 'testkey1';
 
-    function makeid() {
-        var text = '';
-        var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-        for ( var i = 0; i < 5; i++ ) {
-            text += possible.charAt(Math.floor(Math.random() * possible.length));
-        }
-
-        return text;
-    }
-
-    it('should test redis', function(done) {
-        var redisTest = new RedisTest();
-        redisTest.test(done);
-    });
-
     it('should optimisticLock twice', async function(done) {
-        async function pause(delay: number) {
-            return new Promise<string>((resolve, reject) => {
-                setTimeout(function() {
-                    resolve();
-                }, delay);
-            });
-        };
-
         async function doWorkStart(value: any): Promise<any> {
             console.log('doWorkStart: received initial value', util.inspect(value));
             let newValue = value;
@@ -94,7 +61,6 @@ describe('redis', function () {
 
             expect(answerStart.totalCount).toBe(1);
             expect(answerStart.num).toBe(1);
-
 
             //await pause(Math.random() * 5000);
 

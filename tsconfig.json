@@ -9,7 +9,6 @@
     "removeComments": true
   },
   "files": [
-    "src\\greeter.ts",
     "src\\redis.ts",
     "test\\redis-test.ts",
     "typings\\app.d.ts"

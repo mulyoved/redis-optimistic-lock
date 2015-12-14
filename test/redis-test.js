@@ -12,42 +12,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, Promi
         step("next", void 0);
     });
 };
-var Greeter = require('../src/greeter');
 var RedisTest = require('../src/redis');
 var util = require('util');
-describe('ts - test', function () {
-    it('ts - test2', function () {
-        var greeter = new Greeter('TSfriend');
-        expect(greeter.greet()).toBe('Bonjour, TSfriend!');
-    });
-});
 describe('redis', function () {
     let myuuid = 'test1';
     let redisVarName = 'testkey1';
-    function makeid() {
-        var text = '';
-        var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        for (var i = 0; i < 5; i++) {
-            text += possible.charAt(Math.floor(Math.random() * possible.length));
-        }
-        return text;
-    }
-    it('should test redis', function (done) {
-        var redisTest = new RedisTest();
-        redisTest.test(done);
-    });
     it('should optimisticLock twice', function (done) {
         return __awaiter(this, void 0, Promise, function* () {
-            function pause(delay) {
-                return __awaiter(this, void 0, Promise, function* () {
-                    return new Promise((resolve, reject) => {
-                        setTimeout(function () {
-                            resolve();
-                        }, delay);
-                    });
-                });
-            }
-            ;
             function doWorkStart(value) {
                 return __awaiter(this, void 0, Promise, function* () {
                     console.log('doWorkStart: received initial value', util.inspect(value));
