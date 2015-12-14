@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "declaration": false,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "preserveConstEnums": true,
+    "removeComments": true
+  },
+  "files": [
+    "src\\greeter.ts",
+    "src\\redis.ts",
+    "test\\redis-test.ts",
+    "typings\\app.d.ts"
+  ]
+}
