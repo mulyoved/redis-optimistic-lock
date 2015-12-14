@@ -15,10 +15,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, Promi
 var redisLib = require('redis');
 var util = require('util');
 class RedisTest {
-    constructor() {
-        this.redisUrl = 'redis://@192.168.153.156:6379';
-        this.redisOptions = {};
-        this.redis = redisLib.createClient(this.redisUrl, this.redisOptions);
+    constructor(redisUrl, redisOptions) {
+        this.redis = redisLib.createClient(redisUrl, redisOptions);
     }
     redisGet(key) {
         return __awaiter(this, void 0, Promise, function* () {
@@ -94,13 +92,6 @@ class RedisTest {
                 console.log(taskName + ': failed, possibly should retry after sometime');
             }
             return newValue;
-        });
-    }
-    test(cb) {
-        this.redis.set('some key', 'some val');
-        this.redis.get('some key', function (err, replay) {
-            console.log('err', err, 'replay', replay);
-            cb();
         });
     }
 }

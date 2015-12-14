@@ -14,6 +14,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, Promi
 };
 var RedisTest = require('../src/redis');
 var util = require('util');
+let redisUrl = 'redis://@192.168.153.156:6379';
+let redisOptions = {};
 describe('redis', function () {
     let myuuid = 'test1';
     let redisVarName = 'testkey1';
@@ -60,7 +62,7 @@ describe('redis', function () {
             }
             try {
                 console.log('create redis client');
-                let redisTest = new RedisTest();
+                let redisTest = new RedisTest(redisUrl, redisOptions);
                 redisTest.resetValue(redisVarName);
                 console.log('call redisTest.optimisticLock');
                 let answerStart = yield redisTest.optimisticLock('work-start', redisVarName, doWorkStart);
@@ -82,8 +84,8 @@ describe('redis', function () {
     });
     it('should fail optimisticLock 10 times before success', function (done) {
         return __awaiter(this, void 0, Promise, function* () {
-            let redisTest1 = new RedisTest();
-            let redisTest2 = new RedisTest();
+            let redisTest1 = new RedisTest(redisUrl, redisOptions);
+            let redisTest2 = new RedisTest(redisUrl, redisOptions);
             redisTest1.resetValue(redisVarName);
             function doWork2(value) {
                 return __awaiter(this, void 0, Promise, function* () {
@@ -141,7 +143,7 @@ describe('redis', function () {
     });
     it('job should fail 10 times before success', function (done) {
         return __awaiter(this, void 0, Promise, function* () {
-            let redisTest1 = new RedisTest();
+            let redisTest1 = new RedisTest(redisUrl, redisOptions);
             let totalTry = 0;
             redisTest1.resetValue(redisVarName);
             function doFailingWork(value) {

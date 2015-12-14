@@ -7,15 +7,13 @@ import util = require('util');
 
 class RedisTest {
 
-    redisUrl = 'redis://@192.168.153.156:6379';
-    redisOptions: redisLib.ClientOpts = {};
     redis: redisLib.RedisClient;
 
-    constructor() {
-        this.redis = redisLib.createClient(this.redisUrl, this.redisOptions);
+    constructor(redisUrl: string, redisOptions: Object) {
+        this.redis = redisLib.createClient(redisUrl, redisOptions);
     }
 
-    async redisGet(key: string): Promise<string> {
+    private async redisGet(key: string): Promise<string> {
         return new Promise<string>((resolve, reject) => {
             this.redis.get(key, (err, keyValue) => {
                 if (err) {
@@ -27,7 +25,7 @@ class RedisTest {
         });
     }
 
-    async redisExec(dataKey: string, newValue: any): Promise<string> {
+    private async redisExec(dataKey: string, newValue: any): Promise<string> {
         return new Promise<string>((resolve, reject) => {
             this.redis
                 .multi()
@@ -42,7 +40,7 @@ class RedisTest {
         });
     }
 
-    async redisUnwatch(): Promise<string> {
+    private async redisUnwatch(): Promise<string> {
         return new Promise<string>((resolve, reject) => {
             this.redis
                 .unwatch(function(err: Error, replies: any) {
@@ -84,15 +82,6 @@ class RedisTest {
             console.log(taskName + ': failed, possibly should retry after sometime');
         }
         return newValue;
-    }
-
-    test(cb: any) {
-
-        this.redis.set('some key', 'some val');
-        this.redis.get('some key', function(err, replay) {
-            console.log('err', err, 'replay', replay);
-            cb();
-        });
     }
 }
 
