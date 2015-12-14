@@ -189,7 +189,7 @@ describe('redis', function () {
                     newValue.last = 1;
                     totalTry++;
                     if (totalTry < 10) {
-                        console.error(util.format('Simulated exception, failed to execute job for %s times', totalTry));
+                        console.log(util.format('Simulated failed to execute job for %s times', totalTry));
                         return null;
                     }
                     console.log('doFailingWork: return ', util.inspect(newValue));
